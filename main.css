@@ -1,0 +1,17 @@
+ul {
+    display: block; 
+    list-style-type: none;
+}
+
+li{
+    display: block;
+    margin-top: 10px;
+    border: solid;
+    border-color: greenyellow;
+}
+
+li.clicked{
+    border-color: red;
+    text-decoration: line-through;
+    list-style-image: url(cancel.jpg);
+}
