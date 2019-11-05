@@ -2,18 +2,29 @@
 <html>
 <head>
     <title>ToDoBiDoBiDo</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
 </head>
 
 <body>
+    <h1>ToDo-List</h1>
     <center><input type="text" id="input">
         <button onclick="addItem()">Add</button></center>
     <ul id="list">
-        <li onclick="itemClicked(this)" class="listItem">item 1</li>
-        <li onclick="itemClicked(this)" class="listItem">item 2</li>
-        <li onclick="itemClicked(this)" class="listItem">item 3</li>
+        <li onclick="itemClicked(this)" class="listItem"></li>
+        <li onclick="itemClicked(this)" class="listItem"></li>
+        <li onclick="itemClicked(this)" class="listItem"> </li>
     </ul>
     <center><button onclick="removeItems()">Remove</button></center>
+
+
+        <br/>
+        <ol></ol>
+      
+      
+    
+    </div>
 </body>
 </html>

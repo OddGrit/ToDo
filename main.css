@@ -1,3 +1,18 @@
+body{
+	background: linear-gradient(to right , blue,lightgreen);
+	text-align: center;
+}
+button{
+	cursor: pointer;
+	font-size: 20px;
+	border: 1px solid white;
+	outline: none;
+	background-color: rgba(255,255,255,.75);
+	}
+	button:hover{
+	background-color: rgba(255,255,255,.9);
+	cursor: pointer;
+}
 ul {
     display: block; 
     list-style-type: none;
@@ -5,7 +20,9 @@ ul {
 
 li{
     display: block;
-    margin-top: 10px;
+    text-align: left;
+    margin-top: 20px;
+    padding: 10px;
     border: solid;
     border-color: greenyellow;
 }
