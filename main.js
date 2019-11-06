@@ -44,7 +44,7 @@ function removeItems()
 }
 $(document).ready(function(){
     $("button").hover(function(){
-        $(this).animate({padding: "20px"}, 1000);
+        $(this).animate({padding: "2px 20px"}, 1000);
     }, function(){
         $(this).animate({padding: "2px 10px"}, 1000);
     });
