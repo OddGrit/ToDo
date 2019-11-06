@@ -8,8 +8,8 @@ button{
 	border: 1px solid white;
 	outline: none;
 	background-color: rgba(255,255,255,.75);
-	}
-	button:hover{
+}
+button:hover{
 	background-color: rgba(255,255,255,.9);
 	cursor: pointer;
 }
