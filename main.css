@@ -8,7 +8,8 @@ button{
 	border: 1px solid white;
 	outline: none;
 	background-color: rgba(255,255,255,.75);
-    padding: 2px 10px;
+    padding:  2px 10px;
+    margin: 20px;
 }
 button:hover{
 	background-color: rgba(255,255,255,.9);
@@ -17,20 +18,28 @@ button:hover{
 ul {
     display: block; 
     list-style-type: none;
+    align-content: center;
 }
 
 li{
     display: block;
     color: white;
     text-align: left;
-    margin-top: 20px;
+    margin: 20px;
     padding: 10px;
     border: solid;
-    border-color: greenyellow;
+    border-color: darkgrey;
 }
 
 li.clicked{
     border-color: red;
     text-decoration: line-through;
     list-style-image: url(cancel.jpg);
+}
+div{
+    max-width:500px;
+  margin: auto;
+  border: 3px solid ;
+ background: rgba(0, 0, 0, 0.3);
+
 }
