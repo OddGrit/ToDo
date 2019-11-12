@@ -2,14 +2,21 @@
 /*global $, jQuery, alert*/
 
 var clicked = false;
-var items = [""];
+var items = [[], []];
 var removeItem = "";
 
-function save() {
-    "use strict";   // sparar listan i locastorage
+function update() {                                         // uppdaterar, array det som sparas i localstorage
+    "use strict";
+    items.length = 0;
+    $("#list").children('li').each(function () {
+        if (this.classList.contains('clicked')) {
+            items.push([$(this).text(), true]);
+        } else {
+            items.push([$(this).text(), false]);
+        }
+    });
     localStorage.setItem("array", JSON.stringify(items));
 }
-
 function itemClicked(itemClicked) {                      //Kollar om element är markerat, annars markerar
     "use strict";
     var item = itemClicked;
@@ -21,11 +28,12 @@ function itemClicked(itemClicked) {                      //Kollar om element är
         itemClicked.classList.add('clicked');
         clicked = !clicked;
     }
+    update();
 }
 
 function addItem() {
     "use strict";
-    $("li").each(function (index) {                                                                                                      //Kollar efter dubbletter
+    $("li").each(function (index) {                                     //Kollar efter dubbletter
         if ($(this).text() === document.getElementById("input").value) {
             alert('Du håller på att lägga till en dublett!');
             document.getElementById("input").value = "";
@@ -35,13 +43,12 @@ function addItem() {
     if (document.getElementById("input").value < 1) {             //Kollar att man fyller i någonting
         return false;
     } else {
-
         var text = document.getElementById("input").value;
-        $("#list").append('<li onclick="itemClicked(this)" class="listItem">' + text + '</li>');        //Lägger till nytt element i listan
-        items.push(text);                                                                                                                             // lägger till nytt element i array 
+        $("#list").append('<li ondblclick="itemClicked(this)" class="listItem">' + text + '</li>');        //Lägger till nytt element i listan
+        items.push([text, false]);                           // lägger till nytt element i array 
         document.getElementById("input").value = "";
         document.getElementById("input").focus();
-        save();
+        update();
     }
 }
 
@@ -54,9 +61,8 @@ function removeItems() {                                  //plockar bort ifrån 
             items.splice($.inArray(removeItem, items), 1);               //Plockar bort ifrån array
             $(this).remove();
             document.getElementById("input").focus();                    //plockar bort ifrån själva listan
-            save();
+            update();
         }
-         
     });
 }
 $(document).ready(function () {                           // Gör knappar större
@@ -72,17 +78,27 @@ $(document).ready(function () {                               //Läser in ev spa
     "use strict";
     items =  JSON.parse(localStorage.getItem("array"));
     items.forEach(function (el) {
-        $("#list").append('<li onclick="itemClicked(this)" class="listItem">' + el + '</li>');
+        if (el[1] === true) {
+            $("#list").append('<li ondblclick="itemClicked(this)" class="clicked">' + el[0] + '</li>');
+        } else {
+            $("#list").append('<li ondblclick="itemClicked(this)" class="listItem">' + el[0] + '</li>');
+        }
     });
     document.getElementById("input").focus();
 });
     
-$(function () {                                    //Gör listan Sorterbar
+$(function () {                                 //sorterar lista och uppdaterar ordningen
     "use strict";
-    $("#list").sortable();
+    $('#list').sortable({
+        revert    : true,
+        connectWith  : ".sortable",
+        stop     : function (event, ui) {
+            update();
+        }
+    });
 });
     
-$(document).on('keypress', function (e) {                                                    //Lyssnar efter enter
+$(document).on('keypress', function (e) {                                      //Lyssnar efter enter
     "use strict";
     if (e.which === 13) {
         addItem();
