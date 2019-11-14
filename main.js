@@ -77,13 +77,19 @@ $(document).ready(function () {                           // Gör knappar störr
 $(document).ready(function () {                               //Läser in ev sparad lista sedan tidigare
     "use strict";
     items =  JSON.parse(localStorage.getItem("array"));
-    items.forEach(function (el) {
-        if (el[1] === true) {
-            $("#list").append('<li ondblclick="itemClicked(this)" class="clicked">' + el[0] + '</li>');
-        } else {
-            $("#list").append('<li ondblclick="itemClicked(this)" class="listItem">' + el[0] + '</li>');
+    
+    if (items !== null) {
+        items.forEach(function (el) {
+            if (el[1] === true) {
+                $("#list").append('<li ondblclick="itemClicked(this)" class="clicked">' + el[0] + '</li>');
+            } else {
+                $("#list").append('<li ondblclick="itemClicked(this)" class="listItem">' + el[0] + '</li>');
+            }
         }
-    });
+            );
+    } else {
+        items = [[""], [""]];
+    }
     document.getElementById("input").focus();
 });
     
